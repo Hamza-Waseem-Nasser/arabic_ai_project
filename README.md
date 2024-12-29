@@ -238,7 +238,7 @@ Audio("arabic_output.mp3")
    app.run(port=5000)
    ```
 4. Access the public URL, enter Arabic text, and generate MP3 audio.
-
+images/image3.jpg
 ---
 
 ## 6. Saving MP3 to Google Drive (Optional)
