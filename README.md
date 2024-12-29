@@ -266,7 +266,7 @@ Below is an **updated** simple README-style section that **adds** your **Alexa**
 
 ---
 
-## 7. Alexa Project (Optional but Recommended)
+## 7. Alexa Project
 ![image](https://github.com/user-attachments/assets/873a0cf3-3a76-4dca-89d8-5cbfc3c58aa4)
 
 **Link**: [Alexa Developer Console (ar-SA)](https://developer.amazon.com/alexa/console/ask/test/amzn1.ask.skill.8fe47612-d32a-4069-8ad6-0b594c1fcfa8/development/ar_SA/)
@@ -297,9 +297,6 @@ Below is an **updated** simple README-style section that **adds** your **Alexa**
   1. In the Alexa Developer Console, go to **Distribution** -> **Beta Test**.  
   2. **Enable** Beta Testing, add their email addresses.  
   3. They’ll receive an **invite** to enable the skill on their own Alexa accounts.
-
-images/image 4.jpg
-images/image 4.jpg
 ---
 
 **That’s it!** Now your supervisor or classmates can **open** the link, log into the Developer Console, and **test** your Arabic Alexa skill. Or you can **invite** them via Beta Testing so they can run it on their own Echo devices.
