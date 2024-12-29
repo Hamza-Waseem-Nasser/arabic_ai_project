@@ -298,6 +298,7 @@ Below is an **updated** simple README-style section that **adds** your **Alexa**
   3. They’ll receive an **invite** to enable the skill on their own Alexa accounts.
 
 images/image 4.jpg
+
 ---
 
 **That’s it!** Now your supervisor or classmates can **open** the link, log into the Developer Console, and **test** your Arabic Alexa skill. Or you can **invite** them via Beta Testing so they can run it on their own Echo devices.
