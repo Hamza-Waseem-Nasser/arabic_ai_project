@@ -80,6 +80,8 @@ If you do **not** plan to retrain, you can **use** the model from this link (exa
 5. **Open** the `public_url` in your browser. You should see the Arabic ASR interface:
    - **Record** your voice or **upload** an audio file.
    - The webpage displays the **transcription** in Arabic after processing.
+![Speech Recognition Project Screenshot](images/image1.png)
+![Flask ngrok Tunnel Screenshot](images/image2.png)
 
 ---
 
