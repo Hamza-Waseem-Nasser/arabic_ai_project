@@ -85,7 +85,7 @@ If you do **not** plan to retrain, you can **use** the model from this link (exa
    - The webpage displays the **transcription** in Arabic after processing.
 ![Speech Recognition Project Screenshot](images/image1.jpg)
 
-![Flask ngrok Tunnel Screenshot](images/image2.png)
+![Flask ngrok Tunnel Screenshot](images/image2.jpg)
 images/image1.jpg
 ---
 
