@@ -261,3 +261,42 @@ print("File copied to Google Drive.")
 3. **Save Files**: Optionally save MP3 files to Google Drive.
 
 You’re now set up to demo and share your TTS project with ease!
+
+Below is an **updated** simple README-style section that **adds** your **Alexa** project to the overall instructions, showing how anyone can **test** your Alexa skill via the Developer Console link.
+
+---
+
+## 7. Alexa Project (Optional but Recommended)
+
+**Link**: [Alexa Developer Console (ar-SA)](https://developer.amazon.com/alexa/console/ask/test/amzn1.ask.skill.8fe47612-d32a-4069-8ad6-0b594c1fcfa8/development/ar_SA/)
+
+**What It Does**  
+- This skill lets **Alexa** respond in Arabic. You’ve created custom intents or used a LaunchRequest handler so Alexa can greet users and provide certain responses.  
+
+### 7.1 How to Test the Alexa Skill
+
+1. **Log In**  
+   - Go to the link above and log in with your **Amazon Developer** account (the same one you used to create the skill).  
+2. **Select the Locale**  
+   - Make sure the language/locale is set to **ar-SA** (Arabic, Saudi Arabia) in the top-left or wherever you see the language selector.  
+3. **Use the “Test” Tab**  
+   - In the “Test” tab, set the skill to **“Development”** stage.  
+   - **Type** or **Speak** your requests. Examples:  
+     - “افتح المهارة” (“Open the skill”)  
+     - “ما اسم مشروعنا؟” (“What is our project’s name?”)  
+   - Alexa will respond in Arabic with the text you defined in your skill’s code.  
+4. **Optional**: Use a Real Alexa Device  
+   - If you have an **Echo** device (or Alexa app) connected to the **same Amazon account**, just say:  
+     - “Alexa, open [Skill Name]”  
+   - You’ll hear Alexa respond in Arabic as configured.
+
+### 7.2 Sharing with Others (Beta Testing)
+
+- If you want your **supervisor or classmates** to try the skill on their own Alexa devices **without** publishing it publicly, you can:
+  1. In the Alexa Developer Console, go to **Distribution** -> **Beta Test**.  
+  2. **Enable** Beta Testing, add their email addresses.  
+  3. They’ll receive an **invite** to enable the skill on their own Alexa accounts.
+
+---
+
+**That’s it!** Now your supervisor or classmates can **open** the link, log into the Developer Console, and **test** your Arabic Alexa skill. Or you can **invite** them via Beta Testing so they can run it on their own Echo devices.
