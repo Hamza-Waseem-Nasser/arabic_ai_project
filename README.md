@@ -86,7 +86,7 @@ If you do **not** plan to retrain, you can **use** the model from this link (exa
 ![Speech Recognition Project Screenshot](images/image1.png)
 
 ![Flask ngrok Tunnel Screenshot](images/image2.png)
-
+images/image1.jpg
 ---
 
 ## 4. Additional Notes
