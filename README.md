@@ -1,7 +1,3 @@
-Below is a **simple, straightforward README** that you can include in your project’s repository or share with your supervisor. It **briefly** explains how to **run** the **Arabic ASR using Whisper** via Google Colab, how to **load** the already-trained model from Google Drive, and how to **test** it using the Flask web interface. Finally, it **references** the two papers you mentioned.
-
----
-
 # ASR Using Whisper (Arabic) — Simple Instructions
 
 ## 1. Overview
