@@ -1,3 +1,6 @@
+![Alt text describing the image](Hamza-Waseem-Nasser/
+arabic_ai_project/images)
+
 # ASR Using Whisper (Arabic) — Simple Instructions
 
 ## 1. Overview
@@ -81,6 +84,7 @@ If you do **not** plan to retrain, you can **use** the model from this link (exa
    - **Record** your voice or **upload** an audio file.
    - The webpage displays the **transcription** in Arabic after processing.
 ![Speech Recognition Project Screenshot](images/image1.png)
+
 ![Flask ngrok Tunnel Screenshot](images/image2.png)
 
 ---
