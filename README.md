@@ -121,14 +121,16 @@ If you have any **questions** or **suggestions**, feel free to update or improve
 
 
 
-Below is a **simple** README explanation for **TTS Using Amazon Polly** in **Google Colab**, referencing the code you provided and guiding the user step by step. This follows a similar style to your ASR README, so your supervisor or anyone can easily run the project and test the website.
+Here's the updated **README**, including a section explaining how to find and add AWS configuration keys:
 
 ---
 
 # **TTS Using Amazon Polly — Simple Instructions**
 
 ## 1. Overview
-This project demonstrates **Arabic Text-to-Speech** (TTS) using **Amazon Polly**. It provides a **Flask**-based web interface (HTML/JS) for users to **input** Arabic text and **generate** an MP3 file on the fly, served from Google Colab with **ngrok**.  
+This project demonstrates **Arabic Text-to-Speech** (TTS) using **Amazon Polly**. It provides a **Flask**-based web interface (HTML/JS) for users to **input** Arabic text and **generate** an MP3 file on the fly, served from Google Colab with **ngrok**.
+
+---
 
 ## 2. Prerequisites
 1. **Google Colab** for easy environment setup.  
@@ -137,28 +139,58 @@ This project demonstrates **Arabic Text-to-Speech** (TTS) using **Amazon Polly**
 
 ---
 
-## 3. Setup & Steps
+## 3. AWS Configuration Keys: How to Find and Add Them
 
-### A. AWS CLI & Credentials
-1. In Colab, install packages:
+### Step 1: Sign in to the AWS Console
+1. Go to the **AWS Management Console**: [https://aws.amazon.com/console/](https://aws.amazon.com/console/).
+2. Navigate to **Identity and Access Management (IAM)** under the "Access Management" section in the sidebar.
+
+### Step 2: Create or Use an IAM User
+1. In the IAM dashboard, click **Users** in the left sidebar.
+2. Select an existing user with programmatic access or create a new one:
+   - Click **Create User**.
+   - Assign a username (e.g., "PollyTTSUser").
+   - Under **Access Type**, check **Programmatic access** to generate access keys.
+   - Add the user to a group or attach a policy with permissions for Polly:
+     - Use the **AmazonPollyFullAccess** policy.
+
+### Step 3: Download the Access Keys
+1. After creating the user, download the **Access Key ID** and **Secret Access Key** (or note them down).
+2. These keys will be required for the `aws configure` step in Google Colab.
+
+---
+
+### Step 4: Add Keys to Google Colab
+1. Run the following command in Colab to configure AWS CLI:
    ```bash
-   !pip install boto3 awscli torch torchaudio
+   !aws configure
    ```
-2. Run `!aws configure`, then enter:
+2. Enter the keys when prompted:
    ```
-   AWS Access Key ID [None]: YOUR_KEY
-   AWS Secret Access Key [None]: YOUR_SECRET
+   AWS Access Key ID [None]: YOUR_ACCESS_KEY
+   AWS Secret Access Key [None]: YOUR_SECRET_KEY
    Default region name [None]: us-east-1
    Default output format [None]: json
    ```
-   *This writes your credentials to `/root/.aws/credentials`.*
-3. (Optional) Check available Polly voices:
+3. **Verify configuration**:
    ```bash
-   !aws polly list-voices --region us-east-1
+   !aws sts get-caller-identity
    ```
+   This command should return your user’s ARN, confirming that the credentials are correctly configured.
+
+---
+
+## 4. Setup & Steps for TTS
+
+### A. AWS CLI & Polly Test
+Once AWS is configured, you can test Polly directly in Colab:
+```bash
+!aws polly list-voices --region us-east-1
+```
+This will display a list of available Polly voices.
 
 ### B. Generate TTS in Python (Without Website)
-You can quickly test with:
+To generate an MP3 using Polly:
 ```python
 import boto3, os
 
@@ -177,96 +209,54 @@ def generate_arabic_tts(text, output_file="arabic_output.mp3", voice_id="Zeina")
         print(f"TTS generated -> {output_file}")
     else:
         raise Exception("Polly did not return an audio stream.")
-
-sample_text = "مرحباً. هذا اختبار لنطق اللغة العربية باستخدام أمازون بولي."
-output_filename = "arabic_output.mp3"
-generate_arabic_tts(sample_text, output_filename)
 ```
-Then you can **play** the MP3 inside Colab:
+Test it with:
+```python
+generate_arabic_tts("مرحباً بالعالم!", "arabic_output.mp3")
+```
+
+Play the MP3:
 ```python
 from IPython.display import Audio
-Audio(output_filename)
+Audio("arabic_output.mp3")
 ```
 
-### C. Save or Copy the MP3 to Google Drive (Optional)
+---
+
+## 5. Running the Flask Website with Polly
+
+1. Install dependencies:
+   ```bash
+   !pip install pyngrok flask boto3
+   ```
+2. Prepare the Flask app (refer to your HTML and Python code snippet).
+3. Start ngrok and Flask:
+   ```python
+   from pyngrok import ngrok
+   public_url = ngrok.connect(5000)
+   print(" * ngrok tunnel available at:", public_url)
+   app.run(port=5000)
+   ```
+4. Access the public URL, enter Arabic text, and generate MP3 audio.
+
+---
+
+## 6. Saving MP3 to Google Drive (Optional)
+To save the generated MP3 file for later:
 ```python
 from google.colab import drive
-drive.mount("/content/drive")
+drive.mount('/content/drive')
 
-!cp arabic_output.mp3 /content/drive/MyDrive/test_arabic.mp3
+!cp arabic_output.mp3 /content/drive/MyDrive/
 print("File copied to Google Drive.")
 ```
 
 ---
 
-## 4. Running the Flask Website with Polly
-
-1. **Install** dependencies & create directories:
-   ```bash
-   !pip install pyngrok flask boto3
-   !mkdir templates static
-   ```
-
-2. **Set** your `ngrok` authtoken:
-   ```bash
-   !./ngrok authtoken YOUR_NGROK_TOKEN
-   ```
-3. **Prepare** HTML/CSS in `templates/index.html` and `static/` (already provided in the code snippet).
-4. **Define** the Flask app (see your code snippet). It:
-   - Renders `index.html` at `/`.  
-   - POSTs to `/` with Arabic text, calls Polly, and returns **base64** MP3 data.  
-5. **Run** the app & start ngrok:
-   ```python
-   # In your final code cell:
-   from pyngrok import ngrok
-   # ...
-   public_url = ngrok.connect(5000)
-   print(" * ngrok tunnel available at:", public_url)
-   app.run(port=5000)
-   ```
-6. **Open** the displayed `public_url` in a browser.  
-7. **Type** Arabic text into the website, hit “Generate Audio.”  
-8. **Listen** to the result in the integrated player or **download** it.
-
----
-
-## 5. Usage Tips
-
-- **AWS Credentials**:  
-  - The user must have run `!aws configure` with valid Polly permissions (Free Tier or full IAM policy).  
-- **Voice Selection**:  
-  - For Arabic, the main options are “Zeina” or “Hala.” (You can change `voice_id="Hala"` in your code.)  
-- **Character Limit**:  
-  - Polly has a limit (~3000 characters) for a single request. If you exceed it, consider splitting text or using SSML.  
-- **Saving to Drive**:  
-  - The website returns base64 audio, you can also store the final MP3 to Drive or host it if you want persistent access.
-
----
-
-## 6. Example Testing Flow
-
-1. **Colab**:  
-   - Run all cells (install, AWS configure, create HTML, start Flask+ngrok).  
-2. **Browser**:  
-   - Go to the ngrok link, e.g. `http://xxxx-xx-xx.ngrok.io`.  
-   - Enter a short Arabic sentence, e.g. “مرحباً بالعالم! كيف حالك اليوم؟”  
-   - Wait ~1–2 seconds.  
-   - **MP3** appears in the audio player. Press play or download.  
-
----
-
 ## 7. Summary
 
-With these steps:
+1. **AWS** config + **boto3**: Generate Arabic MP3 using Polly.
+2. **Flask** + **ngrok**: Host a web interface to test the TTS.
+3. **Save Files**: Optionally save MP3 files to Google Drive.
 
-1. **AWS** config + **boto3**: you can generate Arabic MP3 from text using **Amazon Polly**.  
-2. **Flask** + **ngrok**: a quick web interface to share or demonstrate your TTS project.  
-3. **Google Drive** integration (optional) to store final MP3 files.  
-
-This approach lets your supervisor/classmates:
-
-- **Enter** Arabic text,
-- **Obtain** a generated MP3,
-- **Play** or **download** it on the spot.
-
-**Congratulations**—you now have a fully operational **TTS** project using **Amazon Polly** in **Google Colab** with a friendly **web UI** for testing!
+You’re now set up to demo and share your TTS project with ease!
