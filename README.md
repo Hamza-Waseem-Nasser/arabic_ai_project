@@ -1,4 +1,3 @@
-![Alt text describing the image](Hamza-Waseem-Nasser/
 arabic_ai_project/images)
 
 # ASR Using Whisper (Arabic) — Simple Instructions
