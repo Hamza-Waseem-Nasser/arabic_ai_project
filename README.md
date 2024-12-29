@@ -268,6 +268,8 @@ Below is an **updated** simple README-style section that **adds** your **Alexa**
 
 ## 7. Alexa Project (Optional but Recommended)
 
+images/image 4.jpg
+
 **Link**: [Alexa Developer Console (ar-SA)](https://developer.amazon.com/alexa/console/ask/test/amzn1.ask.skill.8fe47612-d32a-4069-8ad6-0b594c1fcfa8/development/ar_SA/)
 
 **What It Does**  
