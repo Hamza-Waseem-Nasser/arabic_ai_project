@@ -11,5 +11,5 @@
    - `lambda_function.py` (Alexa Skill code for Arabic TTS and Q&A)
 
 3. **Datasets**:
-   - **Hugging Face** link: [Common Voice Arabic](https://huggingface.co/datasets/common_voice)
+   - **Hugging Face** link: [Common Voice Arabic](https://huggingface.co/datasets/mozilla-foundation/common_voice_11_0)
    - Or any other link if using a different dataset.
